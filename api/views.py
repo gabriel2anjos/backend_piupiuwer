@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from piu.models import *
 from api.serializers import *
 
@@ -9,6 +9,13 @@ from rest_framework.views import APIView, Response
 
 class PiusViewset(generics.ListCreateAPIView):
     # queryset = Piu.objects.all()
+    """
+    get:
+    Retorna uma lista de pius.
+
+    post:
+    Cria um novo piu que pode ter os seguintes atributos:
+    """
     serializer_class = PiuSerializer
     def get_queryset(self):
         """
@@ -22,5 +29,12 @@ class PiusViewset(generics.ListCreateAPIView):
         return queryset
 
 class UsuariosViewset(generics.ListAPIView):
+     """
+     Retorna uma lista com todos os usuarios.
+     """
      queryset = User.objects.all()
      serializer_class = UsuarioSerializer
+
+class UsersViewset(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UsersSerializer
