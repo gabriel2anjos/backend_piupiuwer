@@ -17,6 +17,14 @@ import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    '/home/polijr/webapps/piupiuwer/backend_piupiuwer/static/',
+)
+
+STATIC_ROOT = '/home/polijr/webapps/piupiuwer/piupiuwer_static/'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -27,8 +35,7 @@ SECRET_KEY = 'zu$h5#4a)6ul=ww@ew3zh*$a2j-$d=z1d=q3y0&$bkg#b=&y3r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

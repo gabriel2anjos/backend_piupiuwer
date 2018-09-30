@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^login/$', obtain_jwt_token),
     url(r'^token-verify/', verify_jwt_token),
     url(r'^token-refresh/', refresh_jwt_token),
-    url(r'^usuarios/', UsuariosViewset),
+    url(r'^usuarios/', UsuariosViewset.as_view()),
     url(r'^pius/', PiusViewset.as_view()),
     
 ]
