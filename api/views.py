@@ -21,6 +21,6 @@ class PiusViewset(generics.ListCreateAPIView):
             queryset = queryset.filter(usuario=usuario)
         return queryset
 
-class UsuariosViewset(generics.ListCreateAPIView):
+class UsuariosViewset(generics.ListAPIView):
      queryset = User.objects.all()
      serializer_class = UsuarioSerializer
