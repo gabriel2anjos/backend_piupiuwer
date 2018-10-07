@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^token-refresh/', refresh_jwt_token),
     url(r'^usuarios', UsuariosViewset.as_view()),
     url(r'^registrar', CreateUserView.as_view()),
-    url(r'^pius/(?P<pk>\d+)/$', PiusRUDViewset.as_view()),
+    url(r'^pius/(?P<pk>\d+)', PiusRUDViewset.as_view()),
     url(r'^pius/', PiusCLView.as_view()),
     url(r'^docs/', include_docs_urls(title='PiuPiuwer')),
     #url(r'^registrar/^', UsersViewset.as_view())
