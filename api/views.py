@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from rest_framework import generics, viewsets
+from rest_framework import generics, viewsets, permissions
 from piu.models import *
 from api.serializers import *
+from rest_framework.generics import CreateAPIView
+from django.contrib.auth import get_user_model # If used custom user model
 
+from .serializers import UserSerializer
 from rest_framework.views import APIView, Response
 
 # Create your views here.
@@ -37,4 +40,12 @@ class UsuariosViewset(generics.ListAPIView):
 
 class UsersViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = UsersSerializer
+    serializer_class = UserSerializer
+
+class CreateUserView(CreateAPIView):
+
+    model = get_user_model()
+    permission_classes = [
+        permissions.AllowAny # Or anon users can't register
+    ]
+    serializer_class = UsuarioSerializer

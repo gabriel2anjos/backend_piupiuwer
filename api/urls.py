@@ -18,8 +18,9 @@ urlpatterns = [
     url(r'^token-verify/', verify_jwt_token),
     url(r'^token-refresh/', refresh_jwt_token),
     url(r'^usuarios/', UsuariosViewset.as_view()),
+    url(r'^registrar', CreateUserView.as_view()),
     url(r'^pius/', PiusViewset.as_view()),
-    url(r'^docs/', include_docs_urls(title='PiuPiuwer'))
+    url(r'^docs/', include_docs_urls(title='PiuPiuwer')),
     #url(r'^registrar/^', UsersViewset.as_view())
     
 ]
