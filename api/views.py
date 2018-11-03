@@ -3,7 +3,7 @@ from rest_framework import generics, viewsets, permissions
 from piu.models import *
 from api.serializers import *
 from rest_framework.generics import CreateAPIView
-from django.contrib.auth import get_user_model # If used custom user model
+from django.contrib.auth import get_user_model  # If used custom user model
 
 from .serializers import UserSerializer
 from rest_framework.views import APIView, Response
@@ -31,6 +31,7 @@ from rest_framework.views import APIView, Response
 #             queryset = queryset.filter(usuario=usuario)
 #         return queryset
 
+
 class PiusRUDViewset(generics.RetrieveUpdateDestroyAPIView):
     # queryset = Piu.objects.all()
     """
@@ -43,6 +44,7 @@ class PiusRUDViewset(generics.RetrieveUpdateDestroyAPIView):
     queryset = Piu.objects.all()
     serializer_class = PiuSerializer
 
+
 class PiusCLView(generics.ListCreateAPIView):
     # queryset = Piu.objects.all()
     """
@@ -53,6 +55,7 @@ class PiusCLView(generics.ListCreateAPIView):
     Cria um novo piu que pode ter os seguintes atributos:
     """
     serializer_class = PiuSerializer
+
     def get_queryset(self):
         """
         Optionally restricts the returned purchases to a given user,
@@ -65,13 +68,31 @@ class PiusCLView(generics.ListCreateAPIView):
         return queryset
 
 
+class UsuariosListViewset(generics.ListAPIView):
+    """
+    Retorna uma lista com todos os usuarios.
+    """
+    serializer_class = UsuarioSerializer
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = User.objects.all()
+        usuario = self.request.query_params.get('usuario', None)
+        if usuario is not None:
+            queryset = queryset.filter(usuario=usuario)
+        return queryset
 
-class UsuariosViewset(generics.ListAPIView):
-     """
-     Retorna uma lista com todos os usuarios.
-     """
-     queryset = User.objects.all()
-     serializer_class = UsuarioSerializer
+
+
+class UsuariosRetrieveViewset(generics.RetrieveAPIView):
+    """
+    Retorna um certo usuario
+    """
+    queryset = User.objects.all()
+    serializer_class = UsuarioSerializer
+
 
 class UsersViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
