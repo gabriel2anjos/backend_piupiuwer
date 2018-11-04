@@ -7,6 +7,7 @@ class PiuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Piu
         fields = '__all__'
+        depth = 1
 
 class UserSerializer(serializers.ModelSerializer):
     # password = serializers.CharField(write_only=True)
